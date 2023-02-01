@@ -1,0 +1,77 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| employee      |
+| mentees       |
+| student       |
+| studepartment |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+
+| Regno     | Name    | Dept | Address | Fathername |
++-----------+---------+------+---------+------------+
+| 192011079 | Gowtham | BME  | Erode   | moorthi    |
+| 192011079 | arun    | BME  | nellore | muthu      |
+| 192011095 | Harish  | ECE  | Madurai | Kannan     |
+| 192211080 | Dhivya  | ECE  | Tripur  | Ramesh     |
++-----------+---------+------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where Dept="ECE";
++-----------+--------+------+---------+------------+
+| Regno     | Name   | Dept | Address | Fathername |
++-----------+--------+------+---------+------------+
+| 192011095 | Harish | ECE  | Madurai | Kannan     |
+| 192211080 | Dhivya | ECE  | Tripur  | Ramesh     |
++-----------+--------+------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where Name="Gowtham";
++-----------+---------+------+---------+------------+
+| Regno     | Name    | Dept | Address | Fathername |
++-----------+---------+------+---------+------------+
+| 192011079 | Gowtham | BME  | Erode   | moorthi    |
++-----------+---------+------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> alter table mentees add Marks int(3);
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set Marks=99 where Dept="CSE";
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update mentees set Marks=91 where Dept="BME";
+Query OK, 2 rows affected (0.02 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update mentees set Marks=91 where Name="Dhivya";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set Marks=95 where Name="Harish";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+-------+
+| Regno     | Name    | Dept | Address | Fathername | Marks |
++-----------+---------+------+---------+------------+-------+
+| 192011079 | Gowtham | BME  | Erode   | moorthi    |    91 |
+| 192011079 | arun    | BME  | nellore | muthu      |    91 |
+| 192011095 | Harish  | ECE  | Madurai | Kannan     |    95 |
+| 192211080 | Dhivya  | ECE  | Tripur  | Ramesh     |    91 |
++-----------+---------+------+---------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where Dept like '%S%';
+Empty set (0.00 sec)
+
+mysql> select *from mentees where Address like 'C___n_i';
+Empty set (0.00 sec)

@@ -1,0 +1,27 @@
+use sse;
+Database changed
+mysql> Database changed
+    ->
+    -> mysql> desc employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Database changed
+
+mysql> desc employee' at line 1
+mysql> +--------+-------------+------+-----+---------+-------+
+    -> | Field  | Type        | Null | Key | Default | Extra |
+    -> +--------+-------------+------+-----+---------+-------+
+    -> | name   | varchar(10) | YES  |     | NULL    |       |
+    -> | age    | int(11)     | YES  |     | NULL    |       |
+    -> | salary | int(11)     | YES  |     | NULL    |       |
+    -> | DA     | int(11)     | YES  |     | NULL    |       |
+    -> +--------+-------------+------+-----+---------+-------+
+    -> 4 rows in set (0.01 sec)
+    ->
+    -> mysql> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+--------+-------------+------+-----+---------+-------+
+| Field  | Type        |' at line 1
+mysql> +---------------+
+    -> | Tables_in_sse |
+    -> +---------------+
+    -> | employee      |
+    -> +---------------+
+    -> 1 row in set (0.00 sec)

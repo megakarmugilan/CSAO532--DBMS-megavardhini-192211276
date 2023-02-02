@@ -1,0 +1,73 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| employee      |
+| marks_view    |
+| mdept         |
+| mentees       |
+| mentees1      |
+| per           |
+| student       |
+| studepartment |
++---------------+
+8 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+-------+---------+
+| Regno     | Name    | Dept | Address | Fathername | Marks | subject |
++-----------+---------+------+---------+------------+-------+---------+
+| 192011079 | Gowtham | BME  | Erode   | moorthi    |    91 | BIOEVS  |
+| 192011079 | arun    | BME  | nellore | muthu      |    91 | BIOEVS  |
+| 192011095 | Harish  | ECE  | Madurai | Kannan     |    95 | PDSD    |
+| 192211080 | Dhivya  | ECE  | Tripur  | Ramesh     |    91 | PDSD    |
++-----------+---------+------+---------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Name, Marks,CASE WHEN Marks > 95 THEN 'Excellent' WHEN Marks >90 THEN 'Good' ELSE 'average' END AS performance FROM mentees;
++---------+-------+-------------+
+| Name    | Marks | performance |
++---------+-------+-------------+
+| Gowtham |    91 | Good        |
+| arun    |    91 | Good        |
+| Harish  |    95 | Good        |
+| Dhivya  |    91 | Good        |
++---------+-------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select Name,Marks,if(Marks>=95,"Excellent marks","Good marks") from mentees;
++---------+-------+----------------------------------------------+
+| Name    | Marks | if(Marks>=95,"Excellent marks","Good marks") |
++---------+-------+----------------------------------------------+
+| Gowtham |    91 | Good marks                                   |
+| arun    |    91 | Good marks                                   |
+| Harish  |    95 | Excellent marks                              |
+| Dhivya  |    91 | Good marks                                   |
++---------+-------+----------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> DELIMITER $$
+mysql> CREATE FUNCTION RE4PEAT_DEMO(INC INT)
+    -> RETURNS CHAR(40)
+    -> DETERMINISTIC
+    -> BEGIN
+    -> DECLARE INCOME INT;
+    -> SET INCOME=0;
+    -> REPEAT
+    -> SET INCOME=INCOME+INC;
+    -> UNTIL INCOME>4000
+    -> END REPEAT;
+    -> RETURN "INCOME>4000 DETECTED";
+    -> END;
+    -> $$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT REPEAT_DEMO(4000);$$
++----------------------+
+| REPEAT_DEMO(4000)    |
++----------------------+
+| INCOME>4000 DETECTED |
++----------------------+
+1 row in set (0.00 sec)

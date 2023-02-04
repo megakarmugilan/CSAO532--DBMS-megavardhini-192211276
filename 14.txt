@@ -1,0 +1,67 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| employee      |
+| marks_view    |
+| mdept         |
+| mentees       |
+| mentees1      |
+| movies        |
+| per           |
+| student       |
+| studepartment |
++---------------+
+9 rows in set (0.00 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| rollno   | int(11)     | NO   | PRI | 0       |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| DOB      | varchar(10) | YES  |     | NULL    |       |
+| mobileno | int(11)     | YES  |     | NULL    |       |
+| city     | varchar(20) | YES  |     | NULL    |       |
+| district | varchar(5)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> create user Gowtham;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> grant all on student to Gowtham;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for Gowtham;
++----------------------------------------------------------+
+| Grants for Gowtham@%                                     |
++----------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'Gowtham'@'%'                      |
+| GRANT ALL PRIVILEGES ON `sse`.`student` TO 'Gowtham'@'%' |
++----------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke all on student from Gowtham;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show grants for Gowtham;
++-------------------------------------+
+| Grants for Gowtham@%                |
++-------------------------------------+
+| GRANT USAGE ON *.* TO 'Gowtham'@'%' |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> grant select,update on persons to Gowtham;
+
+mysql> show grants for Gowtham;
++-------------------------------------+
+| Grants for Gowtham@%                |
++-------------------------------------+
+| GRANT USAGE ON *.* TO 'Gowtham'@'%' |
++-------------------------------------+
+1 row in set (0.00 sec)
